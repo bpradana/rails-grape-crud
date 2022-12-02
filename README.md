@@ -1,24 +1,19 @@
-# README
+# Basic CRUD with Rails and Grape
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple example of a CRUD API using Rails and Grape. The API consists of two resources: `users` and `posts`. Users can have many posts. If a user is deleted, all of their posts are deleted as well.
 
-Things you may want to cover:
+## Routes
+### Users
+- `GET /users` - List all users
+- `GET /users/:id` - Show a user
+- `GET /users/:id/posts` - Show a user's posts
+- `POST /users` - Create a user
+- `PUT /users/:id` - Update a user
+- `DELETE /users/:id` - Delete a user
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Posts
+- `GET /posts` - List all posts
+- `GET /posts/:id` - Show a post
+- `POST /posts` - Create a post
+- `PUT /posts/:id` - Update a post
+- `DELETE /posts/:id` - Delete a post
