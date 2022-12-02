@@ -50,3 +50,5 @@ end
 gem "grape", "~> 1.6"
 
 gem "grape-entity", "~> 0.10.2"
+
+gem "faker", "~> 3.0"
