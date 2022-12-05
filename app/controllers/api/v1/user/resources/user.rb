@@ -1,3 +1,7 @@
+# TODO: ugly import, should be auto-imported, but how?
+require_relative '../../../../../lib/validators/custom_alpha'
+require_relative '../../../../../lib/validators/custom_length'
+
 class Api::V1::User::Resources::User < Grape::API
   resource :users do
     desc 'get all users'
@@ -26,7 +30,7 @@ class Api::V1::User::Resources::User < Grape::API
 
     desc 'create a user'
     params do
-      requires :name, type: String, desc: 'name of the user'
+      requires :name, type: String, custom_alpha: true, custom_length: 30, desc: 'name of the user'
     end
     post do
       users = User.create({ name: params[:name] })
@@ -36,7 +40,7 @@ class Api::V1::User::Resources::User < Grape::API
     desc 'update a user'
     params do
       requires :id, type: Integer, desc: 'id of user'
-      optional :name, type: String, desc: 'name of the user'
+      requires :name, type: String, custom_alpha: true, custom_length: 30, desc: 'name of the user'
     end
     put ':id' do
       user = User.find(params[:id])
