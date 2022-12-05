@@ -57,3 +57,5 @@ gem 'caxlsx'
 gem 'caxlsx_rails'
 
 gem 'cloudinary'
+
+gem 'faraday'
