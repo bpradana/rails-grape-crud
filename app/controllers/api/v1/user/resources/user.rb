@@ -10,6 +10,29 @@ class Api::V1::User::Resources::User < Grape::API
       present user, with: Api::V1::User::Entities::User
     end
 
+    desc 'dump all users'
+    get 'dump' do
+      data = User.left_outer_joins(:posts).select('users.id, users.name, posts.title, posts.body').all
+
+      header['Content-Disposition'] = 'attachment; filename=users.xlsx'
+      content_type 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      env['api.format'] = :binary
+
+      p = Axlsx::Package.new
+      wb = p.workbook
+      wb.add_worksheet(name: 'users') do |sheet|
+        sheet.add_row %w[id name title body]
+        data.each do |d|
+          sheet.add_row [d.id, d.name, d.title, d.body]
+        end
+      end
+
+      p.use_shared_strings = true
+      p.serialize('public/users.xlsx')
+
+      File.binread('public/users.xlsx')
+    end
+
     desc 'get a user'
     params do
       requires :id, type: Integer, desc: 'id of user'
