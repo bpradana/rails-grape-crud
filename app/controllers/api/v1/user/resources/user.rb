@@ -51,6 +51,14 @@ class Api::V1::User::Resources::User < Grape::API
       present posts, with: Api::V1::Post::Entities::Post
     end
 
+    desc 'get user\'s secure picture url'
+    params do
+      requires :id, type: Integer, desc: 'id of user'
+    end
+    get ':id/picture' do
+      Cloudinary::Utils.cloudinary_url(User.find(params[:id]).picture, secure: true)
+    end
+
     desc 'create a user'
     params do
       requires :name, type: String, custom_alpha: true, custom_length: 30, desc: 'name of the user'
@@ -58,6 +66,23 @@ class Api::V1::User::Resources::User < Grape::API
     post do
       users = User.create({ name: params[:name] })
       present users, with: Api::V1::User::Entities::User, status: 201
+    end
+
+    desc 'upload a user\'s picture'
+    params do
+      requires :id, type: Integer, desc: 'id of user'
+      requires :picture, type: Rack::Multipart::UploadedFile, desc: 'picture of the user'
+    end
+    post ':id/picture' do
+      user = User.find(params[:id])
+      user.update(picture: "profile-picture-#{user.id}.jpg")
+      Cloudinary::Uploader.upload(
+        params[:picture][:tempfile],
+        public_id: "profile-picture-#{user.id}",
+        overwrite: true, invalidate: true
+      )
+      user = User.find(params[:id])
+      present user, with: Api::V1::User::Entities::User
     end
 
     desc 'update a user'

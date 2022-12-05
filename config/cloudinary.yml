@@ -1,0 +1,11 @@
+development:
+  cloud_name: "dwt5chzkk"
+  api_key: "792488345177113"
+  api_secret: "35fe7HtAivfIgRcbgbKZw8psZ9Q"
+  secure: true
+
+production:
+  cloud_name: "dwt5chzkk"
+  api_key: "792488345177113"
+  api_secret: "35fe7HtAivfIgRcbgbKZw8psZ9Q"
+  secure: true

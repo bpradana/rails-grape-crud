@@ -55,3 +55,5 @@ gem 'faker', '~> 3.0'
 gem 'caxlsx'
 
 gem 'caxlsx_rails'
+
+gem 'cloudinary'
