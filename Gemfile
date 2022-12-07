@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -59,3 +61,5 @@ gem 'caxlsx_rails'
 gem 'cloudinary'
 
 gem 'faraday'
+
+gem 'sidekiq', '~> 7.0'

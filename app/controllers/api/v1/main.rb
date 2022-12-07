@@ -5,4 +5,5 @@ class Api::V1::Main < Grape::API
   mount Api::V1::User::Routes
   mount Api::V1::Post::Routes
   mount Api::V1::Faraday::Routes
+  mount Api::V1::Sidekiq::Routes
 end
