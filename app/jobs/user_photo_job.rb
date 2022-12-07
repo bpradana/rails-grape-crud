@@ -1,6 +1,4 @@
-class UserPhotoJob
-  include Sidekiq::Job
-
+class UserPhotoJob < ApplicationJob
   def perform(id, file_path)
     user = User.find(id)
     public_id = "profile-picture-#{user.id}"

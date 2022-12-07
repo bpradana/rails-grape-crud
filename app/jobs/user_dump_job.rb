@@ -1,6 +1,4 @@
-class UserDumpJob
-  include Sidekiq::Job
-
+class UserDumpJob < ApplicationJob
   def perform
     # Do something
     file_path = 'public/users.xlsx'

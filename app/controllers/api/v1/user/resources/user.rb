@@ -80,7 +80,7 @@ class Api::V1::User::Resources::User < Grape::API
       requires :picture, type: Rack::Multipart::UploadedFile, desc: 'picture of the user'
     end
     post ':id/picture' do
-      UserPhotoJob.perform_async(params[:id], params[:picture][:tempfile].path.to_s)
+      UserPhotoJob.perform_later(params[:id], params[:picture][:tempfile].path.to_s)
       present 'User picture upload running in background'
     end
 
