@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Main < Grape::API
   version 'v1', using: :path
   default_format :json

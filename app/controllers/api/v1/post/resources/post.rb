@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Post::Resources::Post < Grape::API
   resource :posts do
     desc 'get all posts'

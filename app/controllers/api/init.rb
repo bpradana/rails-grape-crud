@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::Init < Grape::API
   formatter :json, SuccessFormatter
   error_formatter :json, ErrorFormatter

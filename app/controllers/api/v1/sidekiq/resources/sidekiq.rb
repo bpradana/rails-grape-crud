@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Sidekiq::Resources::Sidekiq < Grape::API
   resource :sidekiq do
     desc 'create a new sidekiq job'

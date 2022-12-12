@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 5.times do
   user = User.create({ name: Faker::Name.name })
   5.times do

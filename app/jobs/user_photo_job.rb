@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserPhotoJob < ApplicationJob
   def perform(id, file_path)
     user = User.find(id)

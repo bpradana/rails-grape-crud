@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: ugly import, should be auto-imported, but how?
 require_relative '../../../../../lib/validators/custom_alpha'
 require_relative '../../../../../lib/validators/custom_length'

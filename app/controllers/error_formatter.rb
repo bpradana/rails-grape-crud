@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module ErrorFormatter
-  def self.call(message, backtrace, options, env, original_exception)
+  def self.call(message, backtrace, _options, _env, _original_exception)
     response = {
       message:,
       backtrace:

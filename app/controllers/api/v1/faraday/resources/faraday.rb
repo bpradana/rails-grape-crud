@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 class Api::V1::Faraday::Resources::Faraday < Grape::API

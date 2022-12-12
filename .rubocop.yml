@@ -1,0 +1,8 @@
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - "app/lib/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "bin/{rails,rake}"

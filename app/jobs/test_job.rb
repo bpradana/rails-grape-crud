@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TestJob < ApplicationJob
   before_enqueue do |job|
     puts "ENQUEUED JOB: #{job}"
