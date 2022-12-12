@@ -33,6 +33,12 @@ class Api::V1::User::Resources::User < Grape::API
       File.binread('public/users.xlsx')
     end
 
+    desc 'dump all users later'
+    get 'dump/later' do
+      UserDumpJob.perform_in(5.seconds)
+      present 'User dump running in 5 seconds'
+    end
+
     desc 'get a user'
     params do
       requires :id, type: Integer, desc: 'id of user'
@@ -74,15 +80,8 @@ class Api::V1::User::Resources::User < Grape::API
       requires :picture, type: Rack::Multipart::UploadedFile, desc: 'picture of the user'
     end
     post ':id/picture' do
-      user = User.find(params[:id])
-      user.update(picture: "profile-picture-#{user.id}.jpg")
-      Cloudinary::Uploader.upload(
-        params[:picture][:tempfile],
-        public_id: "profile-picture-#{user.id}",
-        overwrite: true, invalidate: true
-      )
-      user = User.find(params[:id])
-      present user, with: Api::V1::User::Entities::User
+      UserPhotoJob.perform_later(params[:id], params[:picture][:tempfile].path.to_s)
+      present 'User picture upload running in background'
     end
 
     desc 'update a user'
